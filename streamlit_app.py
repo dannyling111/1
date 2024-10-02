@@ -20,6 +20,9 @@ image_bots = ["FLUX-pro", "DALL-E-3"]
 text_bots = ["GPT-3.5-Turbo", "GPT-4", "Claude-3-Opus"]
 bot_models = text_bots + image_bots
 
+# List of painting styles
+painting_styles = ["", "油画", "水彩画", "水墨画", "素描", "丙烯画", "写实主义"]
+
 # Streamlit title and description in Chinese
 st.title("AI 图像和文本生成器")
 st.write("输入提示词，并选择一个模型生成文本或图像。")
@@ -27,8 +30,11 @@ st.write("输入提示词，并选择一个模型生成文本或图像。")
 # First section: Image generation
 st.header("图像生成")
 
-# Text input for user prompt for image generation
+# Text input for user prompt for image generation (no default value)
 input_image_prompt = st.text_input("请输入图像生成提示词")
+
+# Dropdown for selecting painting style (default is no selection)
+selected_style = st.selectbox("选择绘画风格", painting_styles, index=0)  # index=0 means the first item is selected (empty)
 
 # Dropdown for selecting image bot model
 selected_image_model = st.selectbox("选择图像生成模型", image_bots)
@@ -38,8 +44,14 @@ if st.button("生成图像"):
     # Show a loading spinner while the image is being fetched
     with st.spinner("正在生成图像..."):
 
+        # Adjust the prompt to include the selected painting style (if applicable)
+        if selected_style:
+            image_prompt = f"{input_image_prompt}，风格为{selected_style}"
+        else:
+            image_prompt = input_image_prompt
+
         async def fetch_image_response():
-            message = ProtocolMessage(role="user", content=input_image_prompt)
+            message = ProtocolMessage(role="user", content=image_prompt)
             reply = ""
 
             # Handling image generation using the image bot
@@ -70,7 +82,7 @@ if st.button("生成图像"):
 # Second section: Text generation
 st.header("文本生成")
 
-# Text input for user prompt for text generation
+# Text input for user prompt for text generation (no default value)
 input_text_prompt = st.text_input("请输入文本生成提示词")
 
 # Dropdown for selecting text bot model
