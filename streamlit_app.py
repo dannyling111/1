@@ -6,6 +6,9 @@ st.title("Simple Streamlit App for Testing")
 # Input: Text input for the user’s name
 name = st.text_input("Enter your name:", "Type here...")
 
+api_key = st.secrets["api_keys"]["my_api_key"]
+st.write(api_key)
+
 # Input: Slider to select a number
 number = st.slider("Select a number:", 1, 100, 50)
 
