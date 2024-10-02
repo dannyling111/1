@@ -28,7 +28,7 @@ st.write("输入提示词，并选择一个模型生成文本或图像。")
 st.header("图像生成")
 
 # Text input for user prompt for image generation
-input_image_prompt = st.text_input("请输入图像生成提示词", value="描述一幅日本的美丽风景")
+input_image_prompt = st.text_input("请输入图像生成提示词")
 
 # Dropdown for selecting image bot model
 selected_image_model = st.selectbox("选择图像生成模型", image_bots)
@@ -71,7 +71,7 @@ if st.button("生成图像"):
 st.header("文本生成")
 
 # Text input for user prompt for text generation
-input_text_prompt = st.text_input("请输入文本生成提示词", value="介绍一下日本")
+input_text_prompt = st.text_input("请输入文本生成提示词")
 
 # Dropdown for selecting text bot model
 selected_text_model = st.selectbox("选择文本生成模型", text_bots)
