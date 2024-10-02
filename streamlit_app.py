@@ -15,66 +15,85 @@ from requests.exceptions import MissingSchema
 # Load the API key from Streamlit secrets
 api_key = st.secrets["api_keys"]["my_api_key"]
 
-# Select bot model from available options
+# Select bot models from available options
 image_bots = ["FLUX-pro", "DALL-E-3"]
-bot_models = ["GPT-3.5-Turbo", "GPT-4", "Claude-3-Opus"] + image_bots
+text_bots = ["GPT-3.5-Turbo", "GPT-4", "Claude-3-Opus"]
+bot_models = text_bots + image_bots
 
-# Streamlit title and description
-st.title("AI Bot and Image Generator")
-st.write("Enter a prompt and select a bot model to generate text or images.")
+# Streamlit title and description in Chinese
+st.title("AI 图像和文本生成器")
+st.write("输入提示词，并选择一个模型生成文本或图像。")
 
-# Text input for user prompt
-input_prompt = st.text_input("Enter your prompt", value="Tell me a good intro about Japan")
+# First section: Image generation
+st.header("图像生成")
 
-# Dropdown for selecting bot model
-selected_model = st.selectbox("Choose a bot model", bot_models)
+# Text input for user prompt for image generation
+input_image_prompt = st.text_input("请输入图像生成提示词", value="描述一幅日本的美丽风景")
 
-# Placeholder for displaying the response or image
-response_placeholder = st.empty()
+# Dropdown for selecting image bot model
+selected_image_model = st.selectbox("选择图像生成模型", image_bots)
 
-# Button to generate the response
-if st.button("Generate Response"):
-    # Show a loading spinner while the response is being fetched
-    with st.spinner("Generating response..."):
-        
-        async def fetch_response():
-            message = ProtocolMessage(role="user", content=input_prompt)
+# Button for generating the image
+if st.button("生成图像"):
+    # Show a loading spinner while the image is being fetched
+    with st.spinner("正在生成图像..."):
+
+        async def fetch_image_response():
+            message = ProtocolMessage(role="user", content=input_image_prompt)
             reply = ""
 
-            if selected_model in image_bots:
-                # Handling image generation using the image bot
-                async for partial in get_bot_response(messages=[message], bot_name=selected_model, api_key=api_key):
-                    response = json.loads(partial.raw_response["text"])
-                    reply += response["text"]
-                return reply, True  # Returning True indicates it's an image bot
-            else:
-                # Handling text generation for regular models like GPT
-                async for partial in get_bot_response(messages=[message], bot_name=selected_model, api_key=api_key):
-                    response = json.loads(partial.raw_response["text"])
-                    reply += response["text"]
-                return reply, False  # Returning False indicates it's not an image bot
+            # Handling image generation using the image bot
+            async for partial in get_bot_response(messages=[message], bot_name=selected_image_model, api_key=api_key):
+                response = json.loads(partial.raw_response["text"])
+                reply += response["text"]
+            return reply
 
-        # Running the async function and getting the response
-        bot_response, is_image = asyncio.run(fetch_response())
+        # Running the async function to get the image response
+        image_response = asyncio.run(fetch_image_response())
 
-        if is_image:
-            # If the response is an image, attempt to display the image
-            image_url = bot_response.split("(")[-1].split(")")[0]  # Assuming image URL extraction
-            try:
-                image_data = requests.get(image_url).content
-                # Save and display the image
-                image_path = f"generated_image_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg"
-                with open(image_path, "wb") as f:
-                    f.write(image_data)
+        # If the response is an image, attempt to display the image
+        image_url = image_response.split("(")[-1].split(")")[0]  # Assuming image URL extraction
+        try:
+            image_data = requests.get(image_url).content
+            # Save and display the image
+            image_path = f"generated_image_{datetime.now().strftime('%Y%m%d_%H%M%S')}.jpg"
+            with open(image_path, "wb") as f:
+                f.write(image_data)
 
-                # Display the image using Streamlit
-                st.image(image_data, caption="Generated Image", use_column_width=True)
-            except MissingSchema:
-                st.error(f"Invalid image URL: {image_url}")
-            except Exception as e:
-                st.error(f"Failed to load image: {str(e)}")
-        else:
-            # If it's a text response, display it
-            st.success("Response:")
-            st.write(bot_response)
+            # Display the image using Streamlit
+            st.image(image_data, caption="生成的图像", use_column_width=True)
+        except MissingSchema:
+            st.error(f"无效的图像链接: {image_url}")
+        except Exception as e:
+            st.error(f"无法加载图像: {str(e)}")
 
+# Second section: Text generation
+st.header("文本生成")
+
+# Text input for user prompt for text generation
+input_text_prompt = st.text_input("请输入文本生成提示词", value="介绍一下日本")
+
+# Dropdown for selecting text bot model
+selected_text_model = st.selectbox("选择文本生成模型", text_bots)
+
+# Button for generating the text
+if st.button("生成文本"):
+    # Show a loading spinner while the text is being fetched
+    with st.spinner("正在生成文本..."):
+
+        async def fetch_text_response():
+            message = ProtocolMessage(role="user", content=input_text_prompt)
+            reply = ""
+
+            # Handling text generation for regular models like GPT
+            async for partial in get_bot_response(messages=[message], bot_name=selected_text_model, api_key=api_key):
+                response = json.loads(partial.raw_response["text"])
+                reply += response["text"]
+            return reply
+
+        # Running the async function to get the text response
+        text_response = asyncio.run(fetch_text_response())
+
+        # Display the text response
+        st.success("生成的文本：")
+        st.write(text_response)
