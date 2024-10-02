@@ -16,7 +16,7 @@ from requests.exceptions import MissingSchema
 api_key = st.secrets["api_keys"]["my_api_key"]
 
 # Select bot model from available options
-image_bots = ["StableDiffusionXL", "DALL-E-3"]
+image_bots = ["FLUX-pro", "DALL-E-3"]
 bot_models = ["GPT-3.5-Turbo", "GPT-4", "Claude-3-Opus"] + image_bots
 
 # Streamlit title and description
