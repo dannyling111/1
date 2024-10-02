@@ -16,7 +16,7 @@ from requests.exceptions import MissingSchema
 api_key = st.secrets["api_keys"]["my_api_key"]
 
 # Select bot models from available options
-image_bots = ["FLUX-pro", "DALL-E-3"]
+image_bots = ["DALL-E-3","FLUX-pro"]
 text_bots = ["GPT-3.5-Turbo", "GPT-4", "Claude-3-Opus"]
 bot_models = text_bots + image_bots
 
