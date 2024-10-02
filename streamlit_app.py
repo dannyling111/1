@@ -1,5 +1,4 @@
 import time
-import docx
 import pandas as pd
 from fastapi_poe.types import ProtocolMessage
 from fastapi_poe.client import get_bot_response
