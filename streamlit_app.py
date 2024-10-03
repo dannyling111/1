@@ -30,23 +30,22 @@ painting_styles = [
     "丙烯画", 
     "写实主义", 
     "印象派", 
-    
-    "梵高风格",  # Vincent van Gogh
-    "达芬奇风格",  # Leonardo da Vinci
-    "莫奈风格",  # Claude Monet
-    "毕加索风格",  # Pablo Picasso
-    "德加风格",  # Edgar Degas
-    "雷诺阿风格",  # Pierre-Auguste Renoir
-    "米开朗基罗风格",  # Michelangelo
-    "达利风格",  # Salvador Dalí
-    "高更风格",  # Paul Gauguin
-    "康定斯基风格",  # Wassily Kandinsky
-    "塞尚风格",  # Paul Cézanne
-    "爱德华·马奈风格",  # Édouard Manet
-    "齐白石风格",  # Qi Baishi
-    "张大千风格",  # Zhang Daqian
-    "徐悲鸿风格",  # Xu Beihong
-    "吴冠中风格",  # Wu Guanzhong
+    "梵高风格", 
+    "达芬奇风格",  
+    "莫奈风格",
+    "毕加索风格", 
+    "德加风格", 
+    "雷诺阿风格", 
+    "米开朗基罗风格",
+    "达利风格",
+    "高更风格", 
+    "康定斯基风格",
+    "塞尚风格", 
+    "爱德华·马奈风格", 
+    "齐白石风格",
+    "张大千风格", 
+    "徐悲鸿风格", 
+    "吴冠中风格"
 ]
 
 # Streamlit title and description in Chinese
