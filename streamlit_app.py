@@ -21,7 +21,33 @@ text_bots = ["GPT-3.5-Turbo", "GPT-4", "Claude-3-Opus"]
 bot_models = text_bots + image_bots
 
 # List of painting styles
-painting_styles = ["", "油画", "水彩画", "水墨画", "素描", "丙烯画", "写实主义"]
+painting_styles = [
+    "", 
+    "油画", 
+    "水彩画", 
+    "水墨画", 
+    "素描", 
+    "丙烯画", 
+    "写实主义", 
+    "印象派", 
+    
+    "梵高风格",  # Vincent van Gogh
+    "达芬奇风格",  # Leonardo da Vinci
+    "莫奈风格",  # Claude Monet
+    "毕加索风格",  # Pablo Picasso
+    "德加风格",  # Edgar Degas
+    "雷诺阿风格",  # Pierre-Auguste Renoir
+    "米开朗基罗风格",  # Michelangelo
+    "达利风格",  # Salvador Dalí
+    "高更风格",  # Paul Gauguin
+    "康定斯基风格",  # Wassily Kandinsky
+    "塞尚风格",  # Paul Cézanne
+    "爱德华·马奈风格",  # Édouard Manet
+    "齐白石风格",  # Qi Baishi
+    "张大千风格",  # Zhang Daqian
+    "徐悲鸿风格",  # Xu Beihong
+    "吴冠中风格",  # Wu Guanzhong
+]
 
 # Streamlit title and description in Chinese
 st.title("AI 图像和文本生成器")
