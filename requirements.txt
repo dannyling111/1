@@ -1,4 +1,2 @@
 streamlit
-fastapi-poe
-requests
-Pillow
+openai
