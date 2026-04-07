@@ -1,3 +1,4 @@
 streamlit
 fastapi-poe
-requests  # If you're using requests for the API call
+requests
+Pillow
