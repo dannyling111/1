@@ -1,0 +1,8 @@
+# Optional: ignore heavy binaries in raw
+raw/images/*.psd
+raw/images/*.ai
+raw/images/*.zip
+
+# OS files
+.DS_Store
+Thumbs.db
