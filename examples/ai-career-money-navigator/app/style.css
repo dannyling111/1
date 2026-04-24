@@ -1,0 +1,287 @@
+/* AI Career Money Navigator v0.1 · styles */
+:root {
+  --bg: #fafafa;
+  --surface: #ffffff;
+  --text: #1a1a1a;
+  --muted: #6b6b6b;
+  --border: #e5e5e5;
+  --accent: #0066ff;
+  --accent-ink: #ffffff;
+  --tag-bg: #f1f3f5;
+  --tag-bg-active: #0066ff;
+  --tag-fg-active: #ffffff;
+  --danger: #c92a2a;
+  --radius: 10px;
+  --shadow: 0 1px 2px rgba(0,0,0,0.04), 0 4px 12px rgba(0,0,0,0.04);
+}
+
+* { box-sizing: border-box; }
+
+html, body {
+  margin: 0;
+  padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font: 16px/1.55 -apple-system, BlinkMacSystemFont, "Segoe UI", "PingFang SC",
+    "Hiragino Sans GB", "Microsoft YaHei", sans-serif;
+}
+
+.container {
+  max-width: 760px;
+  margin: 0 auto;
+  padding: 24px 20px 80px;
+}
+
+.hero h1 {
+  font-size: 28px;
+  line-height: 1.25;
+  margin: 8px 0 10px;
+  letter-spacing: -0.01em;
+}
+.hero p.sub {
+  color: var(--muted);
+  margin: 0 0 18px;
+}
+.hero .cta-row a.btn-primary {
+  display: inline-block;
+  padding: 12px 18px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  text-decoration: none;
+  border-radius: var(--radius);
+  font-weight: 600;
+  font-size: 16px;
+}
+
+.intro {
+  margin: 18px 0 28px;
+  padding: 14px 16px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  color: var(--muted);
+  font-size: 15px;
+}
+.intro strong { color: var(--text); }
+
+.form-section h2 {
+  font-size: 18px;
+  margin: 26px 0 10px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--border);
+}
+
+.field {
+  margin: 14px 0 18px;
+}
+.field > label {
+  display: block;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+.field .hint {
+  display: block;
+  color: var(--muted);
+  font-size: 13px;
+  margin-bottom: 8px;
+}
+
+/* 单选 / Yes-No 按钮组 */
+.choice-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.choice-group button {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--surface);
+  color: var(--text);
+  padding: 8px 14px;
+  border-radius: 999px;
+  font-size: 14px;
+  cursor: pointer;
+  min-height: 44px;
+  transition: all 0.12s ease;
+}
+.choice-group button[aria-pressed="true"] {
+  background: var(--accent);
+  border-color: var(--accent);
+  color: var(--accent-ink);
+}
+.choice-group button:hover:not([aria-pressed="true"]) {
+  border-color: var(--text);
+}
+
+/* 职业下拉 */
+select.career-select {
+  width: 100%;
+  padding: 10px 12px;
+  min-height: 44px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--surface);
+  font-size: 15px;
+}
+
+/* 技能 tag */
+.skill-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+.skill-tags button {
+  appearance: none;
+  border: 1px solid var(--border);
+  background: var(--tag-bg);
+  padding: 8px 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  min-height: 40px;
+}
+.skill-tags button[aria-pressed="true"] {
+  background: var(--tag-bg-active);
+  color: var(--tag-fg-active);
+  border-color: var(--tag-bg-active);
+}
+.skill-tags button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.error-text {
+  color: var(--danger);
+  font-size: 13px;
+  margin-top: 6px;
+  min-height: 18px;
+}
+
+.submit-row {
+  margin-top: 28px;
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+.submit-row button.btn-primary {
+  appearance: none;
+  border: none;
+  padding: 14px 22px;
+  background: var(--accent);
+  color: var(--accent-ink);
+  border-radius: var(--radius);
+  font-size: 16px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 48px;
+}
+.submit-row button.btn-primary:hover { filter: brightness(1.05); }
+.submit-row .note { color: var(--muted); font-size: 13px; }
+
+/* 报告区 */
+.report {
+  margin-top: 40px;
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 22px 22px 28px;
+  box-shadow: var(--shadow);
+  display: none;
+}
+.report.visible { display: block; }
+.report .report-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  margin-bottom: 14px;
+  flex-wrap: wrap;
+}
+.report .report-head h2 {
+  font-size: 22px;
+  margin: 0;
+}
+.report .meta {
+  color: var(--muted);
+  font-size: 14px;
+  margin-bottom: 18px;
+}
+.report h3 {
+  font-size: 18px;
+  margin: 22px 0 8px;
+}
+.report h4 {
+  font-size: 16px;
+  margin: 14px 0 6px;
+}
+.report .risk-score {
+  display: inline-block;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 14px;
+  background: var(--tag-bg);
+  color: var(--text);
+  margin-left: 8px;
+}
+.report ol, .report ul {
+  padding-left: 22px;
+  margin: 8px 0;
+}
+.report ol li, .report ul li {
+  margin: 6px 0;
+}
+.report .pathway {
+  padding: 12px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  margin: 10px 0;
+  background: #fafbfc;
+}
+.report .pathway .score-pill {
+  float: right;
+  background: var(--accent);
+  color: var(--accent-ink);
+  font-size: 12px;
+  padding: 2px 8px;
+  border-radius: 999px;
+}
+.report .why {
+  color: var(--muted);
+  font-size: 14px;
+  margin-top: 6px;
+}
+.report .copy-btn {
+  appearance: none;
+  border: 1px solid var(--accent);
+  background: var(--surface);
+  color: var(--accent);
+  padding: 8px 14px;
+  border-radius: var(--radius);
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  min-height: 40px;
+}
+.report .copy-btn.copied {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+footer {
+  margin-top: 50px;
+  color: var(--muted);
+  font-size: 13px;
+  text-align: center;
+  line-height: 1.6;
+}
+footer a { color: var(--muted); }
+
+/* 手机端优化 */
+@media (max-width: 640px) {
+  .container { padding: 18px 14px 60px; }
+  .hero h1 { font-size: 24px; }
+  .form-section h2 { font-size: 16px; }
+  .report { padding: 16px; }
+  .report h2 { font-size: 19px; }
+}
