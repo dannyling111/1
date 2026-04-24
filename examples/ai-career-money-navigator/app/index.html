@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <title>AI 时代，你的职业怎么赚钱？· 5 分钟诊断</title>
+  <meta name="description" content="输入职业 + 技能 + 时间 + 目标，5 分钟拿到属于你的 AI 时代赚钱路径与 7/30/90 天行动计划。纯前端，不收集数据，可复制 Markdown。" />
+  <link rel="stylesheet" href="./style.css" />
+</head>
+<body>
+  <main class="container">
+    <section class="hero">
+      <h1>AI 时代，你的职业还怎么赚钱？</h1>
+      <p class="sub">填 9 个问题，5 分钟，拿到你的专属赚钱路径与 30 天行动清单。</p>
+      <div class="cta-row">
+        <a href="#form" class="btn-primary">开始诊断 ↓</a>
+      </div>
+    </section>
+
+    <section class="intro">
+      <strong>不是套话。</strong>
+      报告会引用你填的职业、技能、时间、风险偏好，给出具体到"明天就能做的事"。纯前端运行，不收集任何个人数据。
+    </section>
+
+    <form id="diag-form" novalidate>
+      <section class="form-section" id="form">
+        <h2>▍关于你</h2>
+
+        <div class="field">
+          <label for="career-select">1. 你现在做什么？</label>
+          <select id="career-select" class="career-select">
+            <option value="">请选择…</option>
+          </select>
+          <div class="error-text" data-error-for="career"></div>
+        </div>
+
+        <div class="field">
+          <label>2. 你的核心技能（最多选 3 项）</label>
+          <span class="hint">不必完美对应岗位名，选最强的几项</span>
+          <div class="skill-tags" id="skill-tags"></div>
+          <div class="error-text" data-error-for="skills"></div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>▍你的条件</h2>
+
+        <div class="field">
+          <label>3. 每周能投入多少时间？</label>
+          <div class="choice-group" data-group="hours">
+            <button type="button" data-value="<5">&lt; 5h</button>
+            <button type="button" data-value="5-15">5–15h</button>
+            <button type="button" data-value="15-30">15–30h</button>
+            <button type="button" data-value="30+">30h+</button>
+          </div>
+          <div class="error-text" data-error-for="hours"></div>
+        </div>
+
+        <div class="field">
+          <label>4. 目标月收入</label>
+          <div class="choice-group" data-group="income">
+            <button type="button" data-value="<5k">&lt; ¥5k</button>
+            <button type="button" data-value="5-20k">¥5–20k</button>
+            <button type="button" data-value="20-50k">¥20–50k</button>
+            <button type="button" data-value="50k+">¥50k+</button>
+          </div>
+          <div class="error-text" data-error-for="income"></div>
+        </div>
+
+        <div class="field">
+          <label>5. 风险偏好</label>
+          <div class="choice-group" data-group="risk">
+            <button type="button" data-value="conservative">保守（稳定副业）</button>
+            <button type="button" data-value="balanced">平衡（边做边试）</button>
+            <button type="button" data-value="aggressive">激进（全职创业）</button>
+          </div>
+          <div class="error-text" data-error-for="risk"></div>
+        </div>
+      </section>
+
+      <section class="form-section">
+        <h2>▍你的意愿</h2>
+
+        <div class="field">
+          <label>6. 愿意做内容（博客 / 视频 / 小红书）？</label>
+          <div class="choice-group" data-group="content">
+            <button type="button" data-value="yes">愿意</button>
+            <button type="button" data-value="no">暂不</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>7. 会写代码 / 愿意用 Claude Code？</label>
+          <div class="choice-group" data-group="code">
+            <button type="button" data-value="yes">愿意</button>
+            <button type="button" data-value="no">暂不</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>8. 愿意做 1v1 咨询？</label>
+          <div class="choice-group" data-group="consult">
+            <button type="button" data-value="yes">愿意</button>
+            <button type="button" data-value="no">暂不</button>
+          </div>
+        </div>
+
+        <div class="field">
+          <label>9. 愿意做产品 / 网站？</label>
+          <div class="choice-group" data-group="product">
+            <button type="button" data-value="yes">愿意</button>
+            <button type="button" data-value="no">暂不</button>
+          </div>
+        </div>
+      </section>
+
+      <div class="submit-row">
+        <button type="submit" class="btn-primary">生成我的路径 →</button>
+        <span class="note">纯前端运行，不联网、不存服务器</span>
+      </div>
+    </form>
+
+    <section id="report" class="report" aria-live="polite">
+      <div class="report-head">
+        <h2>你的 AI 赚钱路径报告</h2>
+        <button type="button" class="copy-btn" id="copy-btn">复制 Markdown</button>
+      </div>
+      <div id="report-body"></div>
+    </section>
+
+    <footer>
+      AI Venture OS · ai-career-money-navigator v0.1 · 规则化生成，不调用外部 AI，不收集个人数据
+      <br />
+      <a href="https://github.com/dannyling111/1" rel="noreferrer">GitHub</a>
+    </footer>
+  </main>
+
+  <script src="./rules-careers.js"></script>
+  <script src="./rules-pathways.js"></script>
+  <script src="./engine.js"></script>
+  <script src="./app.js"></script>
+</body>
+</html>
